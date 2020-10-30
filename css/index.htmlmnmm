@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Rulette</title>
+    <base href="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"  crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styledos.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/jquery.slotmachine.css" type="text/css" media="screen" />
+
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"  crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/jquery.slotmachine.js"></script>
+    <script type="text/javascript" src="js/value.js"></script>
+    <script type="text/javascript" src="js/random.min.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <!--img src="img/title.png"-->
+    </header>
+    <div id="randomize" >
+        <div class="content container-fluid" style="text-align:center;max-width: 900px;">
+
+
+            <div class="row">
+                <div class="col-xs-4">
+                    <div>
+                        <div id="machine1" class="randomizeMachine">
+                            <div class="random-n">0</div>
+                            <div class="random-n">1</div>
+                            <div class="random-n">2</div>
+                            <div class="random-n">3</div>
+                            <div class="random-n">4</div>
+                            <div class="random-n">5</div>
+                            <div class="random-n">6</div>
+                            <div class="random-n">7</div>
+                            <div class="random-n">8</div>
+                            <div class="random-n">9</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div>
+                        <div id="machine2" class="randomizeMachine">
+                            <div class="random-n">0</div>
+                            <div class="random-n">1</div>
+                            <div class="random-n">2</div>
+                            <div class="random-n">3</div>
+                            <div class="random-n">4</div>
+                            <div class="random-n">5</div>
+                            <div class="random-n">6</div>
+                            <div class="random-n">7</div>
+                            <div class="random-n">8</div>
+                            <div class="random-n">9</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div>
+                        <div id="machine3" class="randomizeMachine">
+                            <div class="random-n">0</div>
+                            <div class="random-n">1</div>
+                            <div class="random-n">2</div>
+                            <div class="random-n">3</div>
+                            <div class="random-n">4</div>
+                            <div class="random-n">5</div>
+                            <div class="random-n">6</div>
+                            <div class="random-n">7</div>
+                            <div class="random-n">8</div>
+                            <div class="random-n">9</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div>
+                <div class="btn-group btn-group-justified btn-group-randomize" role="group">
+                    <div id="ranomizeButton" type="button" class="btn btn-black btn-lg">INICIAR</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3 class="hashtag"><span></span></h3>
+            <div class="torres col-md-4 col-md-offset-3"></div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+
+
+
+            var numbersArray = getArray();
+
+            var pos = 0;
+            var playeable = true;
+
+            console.log(ganador);
+            console.log(numbersArray);
+
+
+            var machine1 = $("#machine1").slotMachine({
+                active: 0,
+                delay: 500
+            });
+
+            var machine2 = $("#machine2").slotMachine({
+                active: 0,
+                delay: 500,
+                direction: 'down'
+            });
+
+            var machine3 = $("#machine3").slotMachine({
+                active: 0,
+                delay: 500
+            });
+
+            function onComplete(active) {
+                switch (this.element[0].id) {
+                    case 'machine1':
+                        $("#machine1Result").text("Index: " + this.active);
+                        break;
+                    case 'machine2':
+                        $("#machine2Result").text("Index: " + this.active);
+                        break;
+                    case 'machine3':
+                        $("#machine3Result").text("Index: " + this.active);
+                        break;
+                }
+            }
+
+            $("#ranomizeButton").click(function() {
+                if (playeable) {
+                    runRulette();
+                    playeable = false;
+                }
+
+            });
+
+            $(window).keypress(function(e) {
+                if (e.keyCode === 0 || e.keyCode === 32) {
+                    e.preventDefault();
+                    if (playeable) {
+                        runRulette();
+                        playeable = false;
+                    }
+                }
+            });
+
+
+            function runRulette() {
+                var r = Random(); // same as new Random(Random.engines.nativeMath)
+
+                var value = r.integer(0, numbersArray.length - 1);
+                output = [],
+                    sNumber = numbersArray[value].toString();
+
+
+
+                //removeA(numbersArray, value);
+
+
+
+                if (ganador.length > pos) {
+                    if (ganador[pos] != 0) {
+                        sNumber = ganador[pos].toString();
+                    } else {
+                        numbersArray.splice(value, 1);
+                        numbersArray = shuffle(numbersArray);
+                    }
+                    pos++;
+                } else {
+                    numbersArray.splice(value, 1);
+                    numbersArray = shuffle(numbersArray);
+                }
+
+                console.log(numbersArray);
+
+                for (var i = 0, len = sNumber.length; i < len; i += 1) {
+                    output.push(+sNumber.charAt(i));
+                }
+
+                if (output.length == 2) {
+
+                    machine1.setRandomize(function() {
+                        return 0;
+                    });
+
+                    machine2.setRandomize(function() {
+                        return output[0];
+                    });
+
+                    machine3.setRandomize(function() {
+                        return output[1];
+                    });
+                } else if (output.length == 1) {
+
+                    machine1.setRandomize(function() {
+                        return 0;
+                    });
+
+                    machine2.setRandomize(function() {
+                        return 0;
+                    });
+
+                    machine3.setRandomize(function() {
+                        return output[0];
+                    });
+
+                } else {
+
+                    machine1.setRandomize(function() {
+                        return output[0];
+                    });
+
+                    machine2.setRandomize(function() {
+                        return output[1];
+                    });
+
+                    machine3.setRandomize(function() {
+                        return output[2];
+                    });
+
+                }
+                //console.log(output);
+
+                trying();
+            }
+
+            function trying() {
+                machine1.shuffle(5, onComplete);
+
+                setTimeout(function() {
+                    machine2.shuffle(5, onComplete);
+                }, 500);
+
+                setTimeout(function() {
+                    machine3.shuffle(5, onComplete);
+                    playeable = true;
+                }, 1000);
+            }
+
+            function getArray() {
+                var array = [];
+                for (var i = 1; i < randMax + 966; i++) {
+                    array.push(i);
+                    for (var j = 0; j < ganador.length; j++) {
+                        if (i == ganador[j]) {
+                            array.splice(array.length - 1, 1);
+                            break;
+                        }
+                    }
+
+              }
+                return shuffle(array);
+            }
+
+            function shuffle(array) {
+                var currentIndex = array.length,
+                    temporaryValue, randomIndex;
+
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
+
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>

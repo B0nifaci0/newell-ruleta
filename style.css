@@ -1,0 +1,236 @@
+ @charset "utf-8";
+ /* CSS Document */
+
+ @import url(http://fonts.googleapis.com/css?family=Pathway+Gothic+One);
+ @font-face {
+     font-family: 'Intro';
+     /*a name to be used later*/
+     src: url('../fonts/Intro.otf');
+     /*URL to font*/
+ }
+
+ .well {
+     background-color: rgba(245, 245, 245, 0.5);
+ }
+
+ .badge {
+     font-size: 30px;
+     background-color: rgb(0, 175, 225);
+ }
+
+ a {
+     color: #3FC1C0;
+     text-decoration: none;
+ }
+
+ a:hover {
+     text-decoration: underline;
+     color: #a9b119;
+ }
+
+ .clear {
+     clear: both;
+ }
+
+ html {
+     position: relative;
+     min-height: 100%;
+ }
+
+ body {
+     background-color: #fff;
+     font-family: 'Intro';
+     width: 100vw;
+     overflow: hidden;
+     /*background-image: url('../img/bg2.jpg');*/
+     background-position-x: center;
+     background-position-y: center;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+ }
+
+ b {
+     font-weight: 600;
+ }
+
+ .btn-black {
+     background-color: #3FC1C0;
+     color: #fff;
+ }
+ /* Titulos
+-------------------------------------------------------------------------*/
+
+ h1 {
+     width: 100%;
+     font-size: 40px;
+     margin-bottom: 25px;
+ }
+
+ h2 {
+     color: #000000;
+     display: table-cell;
+     float: left;
+     font-size: 45px;
+     line-height: 40px;
+     margin: 0 0 50px;
+     text-align: center;
+     width: 100%;
+     font-weight: 300;
+ }
+
+ h2 span {
+     font-weight: 400;
+ }
+
+ h3 {
+     float: left;
+     width: 100%;
+     margin: 0 0 20px 0;
+     font-size: 40px;
+     font-weight: 300;
+ }
+
+ h3 span {
+     font-family: Arial, Helvetica, sans-serif;
+     font-weight: bolder;
+ }
+
+ h4 {
+     display: table-cell;
+     float: left;
+     font-size: 35px;
+     line-height: 31px;
+     margin: 0 0 0;
+     text-align: center;
+     width: 100%;
+     font-weight: 400;
+ }
+
+ p.title {
+     color: #3FC1C0;
+     display: table-cell;
+     float: left;
+     font-size: 45px;
+     line-height: 40px;
+     margin: 0 0 50px;
+     text-align: center;
+     width: 100%;
+     font-weight: 300;
+ }
+
+ .grey {
+     color: #444;
+ }
+
+ .header-line {
+     width: 100%;
+     position: absolute;
+     height: 10px;
+     background-color: #A48E4E;
+     top: 0px;
+ }
+ /*
+ * Header
+ */
+
+ header {
+     text-align: center;
+     margin-top: 50px;
+     margin-bottom: 50px;
+ }
+
+ header p {
+     color: #333;
+     font-size: 25px;
+     text-align: center;
+ }
+
+ header a {
+     color: #6C5726;
+     font-weight: 700;
+ }
+ /*
+ * SlotMachine
+ */
+
+ #randomize {
+     height: 400px;
+     /*border-bottom: 10px solid rgb(72, 158, 48);*/
+ }
+
+ #randomize .row>div.col-xs-4 {
+     padding-left: 0;
+ }
+
+ #randomize .row>div.col-xs-4>div {
+     padding-top: 15px;
+     padding-left: 15px;
+     width: 280px;
+     height: 280px;
+     background-color: #3FC1C0;
+     margin: auto;
+ }
+
+ .random-n {
+     font-size: 210px;
+     font-family: 'Intro';
+     color: #fff;
+ }
+
+ .randomizeMachine {
+     width: 250px;
+     height: 250px;
+ }
+
+ .btn-group-randomize {
+     margin: 0 auto;
+     margin-top: 30px;
+     width: auto;
+ }
+
+ .btn-group-randomize div {
+     width: auto !important;
+ }
+
+ .hashtag {
+     position: absolute;
+     bottom: 40px;
+     left: 140px;
+     max-width: 240px;
+     color: #3FC1C0;
+ }
+
+ .hashtag img {
+     width: 100%;
+ }
+
+ .torres {
+     position: absolute;
+     bottom: 70px;
+     right: 140px;
+ }
+ /*
+ * Footer
+ */
+
+ footer {
+     width: 100%;
+     background-color: #6C5726;
+     border-top: 20px dotted #A48E4E;
+     height: 180px;
+     padding-top: 40px;
+     text-align: center;
+     color: #DCD293;
+ }
+
+ #textMachine {
+     width: 520px;
+     height: 67px;
+     overflow: hidden;
+     display: inline-block;
+     text-align: left;
+ }
